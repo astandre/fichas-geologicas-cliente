@@ -2,8 +2,8 @@ from .constants import *
 
 
 def build_full_estructuras(data):
-    if "diques" in data:
-        for dique in data["diques"]:
+    if "EST-diques" in data:
+        for dique in data["EST-diques"]:
             for key in CLASE_DIQUE:
                 if dique["claseDique"] == key[0]:
                     dique["claseDique"] = key[1]

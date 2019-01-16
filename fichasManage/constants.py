@@ -7,7 +7,7 @@ claseDique
 """
 
 CLASE_DIQUE = (
-    ('c', 'Inclinado'),
+    ('ic', 'Inclinado'),
     ('ho', 'Horizontal'),
     ('vt', 'Vertical'),
 )
@@ -19,7 +19,7 @@ rocasMetaforicas
 'vt' - Vertical
 """
 ROCAS_METAFORICAS = (
-    ('m', 'Inclinado'),
+    ('ic', 'Inclinado'),
     ('ho', 'Horizontal'),
     ('vt', 'Vertical'),
 )

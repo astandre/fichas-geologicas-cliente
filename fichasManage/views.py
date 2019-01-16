@@ -28,6 +28,7 @@ def estructuras_geologicas_todas(request):
     estructuras_geologicas = get_estructuras_geologicas()
     estructuras_geologicas = estructuras_geologicas["_embedded"]
     print(estructuras_geologicas)
+    estructuras_geologicas["diques"] = estructuras_geologicas.pop("EST-diques")
     estructuras_geologicas = build_full_estructuras(estructuras_geologicas)
     template = loader.get_template('fichasManage/estructuras_todas.html')
     context = {
