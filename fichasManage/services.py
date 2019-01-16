@@ -9,6 +9,12 @@ def get_fichas():
     response = r.json()
     return response
 
+def get_ubicaciones():
+    url = BASE_URL + "/ubicaciones/"
+    r = requests.get(url)
+    response = r.json()
+    return response
+
 
 def get_estructuras_geologicas():
     url = BASE_URL + "/estructurasGeologicas/"
