@@ -29,9 +29,22 @@ def estructuras_geologicas_todas(request):
     estructuras_geologicas = estructuras_geologicas["_embedded"]
     print(estructuras_geologicas)
     estructuras_geologicas["diques"] = estructuras_geologicas.pop("EST-diques")
+    estructuras_geologicas["foliaciones"] = estructuras_geologicas.pop("EST-foliaciones")
     estructuras_geologicas = build_full_estructuras(estructuras_geologicas)
     template = loader.get_template('fichasManage/estructuras_todas.html')
     context = {
         'estructuras_geologicas': estructuras_geologicas
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def ubicaciones_todas(request):
+    ubicaciones = get_ubicaciones()
+    ubicaciones = ubicaciones["_embedded"]["ubicaciones"]
+    for ubicacion in ubicaciones:
+        ubicacion["links"] = ubicacion.pop("_links")
+    template = loader.get_template('fichasManage/ubicaciones_todas.html')
+    context = {
+        'ubicaciones': ubicaciones
     }
     return HttpResponse(template.render(context, request))
