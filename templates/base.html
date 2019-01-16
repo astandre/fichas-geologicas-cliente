@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    {% block head %}
+    {% endblock %}
+    <title>{% block title %}{% endblock %}  </title>
+
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'fichas_campo_todas'  %}">Fichas de campo</a></li>
+            <li><a href="{% url 'estructuras_geologicas_todas' %}">Estructuras geologicas</a></li>
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="">About</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+{% block main %}
+
+{% endblock %}
+</main>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+
+{% endblock %}
+{% block title %}Fichas{% endblock %}
+{% block main %}
+
+    {% if fichas_campo %}
+        <table>
+            <tr>
+                <th>Muestra</th>
+                <th>Origen Roca</th>
+                <th>Unidad Geologica</th>
+                <th>Contacto Geologica</th>
+                <th>Detalle</th>
+            </tr>
+            {% for ficha in fichas_campo %}
+                <tr>
+                    <td>{{ ficha.muestra }}</td>
+                    <td>{{ ficha.origenRoca }}</td>
+                    <td>{{ ficha.unidadGeologica }}</td>
+                    <td>{{ ficha.contactoGeologico }}</td>
+                    <td><a href="">Detalle</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+
+{% endblock %}
+{% block title %}Fichas{% endblock %}
+{% block main %}
+
+    {% if estructuras_geologicas %}
+        <table>
+            {% if estructuras_geologicas.diques %}
+                <tr>
+                    <th>
+                        <h2>Diques</h2>
+                    </th>
+                </tr>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Sub categoria</th>
+                    <th>Descripcion</th>
+                    <th>Institucion generadora</th>
+                    <th>Clase Dique </th>
+                    <th>Detalle</th>
+                </tr>
+                {% for dique in estructuras_geologicas.diques %}
+                    <tr>
+                        <td>{{ dique.categoria }}</td>
+                        <td>{{ dique.subcategoria }}</td>
+                        <td>{{ dique.descripcion }}</td>
+                        <td>{{ dique.institucionGeneradora }}</td>
+                        <td>{{ dique.claseDique }}</td>
+                        <td><a href="">Detalle</a></td>
+                    </tr>
+
+                {% endfor %}
+            {% endif %}
+
+            {% if estructuras_geologicas.foliaciones %}
+                <tr>
+                    <th>
+                        <h2>Folicaciones</h2>
+                    </th>
+                </tr>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Sub categoria</th>
+                    <th>Descripcion</th>
+                    <th>Institucion generadora</th>
+                    <th>Rocas Metaforicas</th>
+                    <th>Detalle</th>
+                </tr>
+                {% for folicacion in estructuras_geologicas.foliaciones %}
+                    <tr>
+                        <td>{{ folicacion.categoria }}</td>
+                        <td>{{ folicacion.subcategoria }}</td>
+                        <td>{{ folicacion.descripcion }}</td>
+                        <td>{{ folicacion.institucionGeneradora }}</td>
+                        <td>{{ folicacion.rocasMetaforicas }}</td>
+                        <td><a href="">Detalle</a></td>
+                    </tr>
+
+                {% endfor %}
+            {% endif %}
+        </table>
+    {% endif %}
+{% endblock %}
+

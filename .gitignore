@@ -1,4 +1,6 @@
+# Custom
 .idea/
+fichasManage/migrations/*.*
 # Created by https://www.gitignore.io
 
 ### OSX ###
