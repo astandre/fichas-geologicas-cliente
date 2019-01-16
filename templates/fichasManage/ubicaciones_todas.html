@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+
+{% endblock %}
+{% block title %}Ubicaciones{% endblock %}
+{% block main %}
+
+    {% if ubicaciones %}
+        <table>
+            <tr>
+                <th>Fecha</th>
+                <th>Provincia</th>
+                <th>Canton</th>
+                <th>Sector</th>
+                <th>Escala</th>
+            </tr>
+            {% for ubicacion in ubicaciones %}
+                <tr>
+                    <td>{{ ubicacion.fecha }}</td>
+                    <td>{{ ubicacion.provincia }}</td>
+                    <td>{{ ubicacion.canton }}</td>
+                    <td>{{ ubicacion.sector }}</td>
+                    <td>{{ ubicacion.escala }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}
