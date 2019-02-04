@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+
+{% endblock %}
+{% block title %}Fichas{% endblock %}
+{% block main %}
+    {% if ficha_campo %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"> {{ ficha_campo.datum }}
+                    <a class="btn btn-primary" href="#" role="button" id="export">CSV</a>
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted"><strong>Proyecto: </strong> {{ ficha_campo.datum }},
+                    <strong>Autor: </strong> {{ ficha_campo.descritaPor }},
+                    <strong>Ubicacion: </strong> {{ ficha_campo.ubicacion.provincia }}, {{ ficha_campo.ubicacion.canton }}
+                    ({{ ficha_campo.ubicacion.sector }})
+                    <strong>Escala: </strong> {{ ficha_campo.ubicacion.escala }}
+                </h6>
+                <p class="card-text">{{ ficha_campo.datosUbicacion }}</p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <h2>Informacion general</h2>
+                                <strong>Unidad geologica: </strong> {{ ficha_campo.nomenclaturaUnidadGeologica }} <br>
+                                <strong>Tipo Contacto Geologico: </strong> {{ ficha_campo.tipoContactoGeo }} <br>
+                                <strong>Limite Contacto Geologico: </strong> {{ ficha_campo.limiteContactoGeo }} <br>
+                                <strong>Certeza Contacto Geologico: </strong> {{ ficha_campo.certezaContactoGeo }} <br>
+                                <strong>Origen Roca: </strong> {{ ficha_campo.origenRoca }} <br>
+                                <strong>Estructura Roca: </strong> {{ ficha_campo.estructuraRoca }} <br>
+                            </div>
+                            <div class="col-md-6">
+                                {% if ficha_campo.ubicacion.foto %}
+                                    <img src="{{ ficha_campo.ubicacion.foto }}"
+                                         alt="{{ ficha_campo.datum }}" class="img-thumbnail rounded float-right">
+                                {% else %}
+                                    <img src="https://naturegalapagos.com/es/wp-content/uploads/sites/3/2015/06/parque-nacional-cotopaxi.jpg"
+                                         alt="{{ ficha_campo.datum }}" class="img-thumbnail rounded float-right">
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Pliegue:</h5>
+                                        <p class="card-text">
+
+                                            <strong>Altura:</strong> {{ ficha_campo.pliegue.altura }} m <br>
+                                            <strong>Rumbo:</strong> {{ ficha_campo.pliegue.rumbo }} <br>
+                                            <strong>Separacion:</strong> {{ ficha_campo.pliegue.separacion }} <br>
+                                            <strong>Buzamiento:</strong> {{ ficha_campo.pliegue.buzamiento }} <br>
+                                            <strong>Tipo:</strong> {{ ficha_campo.pliegue.tipo }} <br>
+                                            <strong>Posicion:</strong> {{ ficha_campo.pliegue.posicion }} <br>
+                                            <strong>Angulo entre
+                                                flancos:</strong> {{ ficha_campo.pliegue.anguloEntreFlancos }} <br>
+                                            <strong>Perfil:</strong> {{ ficha_campo.pliegue.perfil }} <br>
+                                            <strong>Sistema:</strong> {{ ficha_campo.pliegue.sistema }} <br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Estructura lineal:</h5>
+                                        <p class="card-text">
+                                            <strong>Lineacion:</strong> {{ ficha_campo.eslineal.lineacion }} <br>
+                                            <strong>Clase:</strong> {{ ficha_campo.eslineal.claseEstrLineal }} <br>
+                                            <strong>Buzamiento:</strong> {{ ficha_campo.eslineal.buzamiento }}<br>
+                                            <strong>Asociacion:</strong> {{ ficha_campo.eslineal.asociacion }}<br>
+                                            <strong>Formacion:</strong> {{ ficha_campo.eslineal.formacion }}<br>
+                                            <strong>Diaclasa:</strong> {{ ficha_campo.eslineal.diaclasaClase }}<br>
+                                            <strong>Direccion:</strong> {{ ficha_campo.eslineal.direccion }} <br>
+                                            <strong>Rumbo:</strong>{{ ficha_campo.eslineal.rumbo }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Estructura planar:</h5>
+                                        <p class="card-text">
+                                            <strong>Buzamiento
+                                                intensidad:</strong> {{ ficha_campo.esplanar.buzamientoIntensidad }}
+                                            <br>
+                                            <strong>Azimut:</strong> {{ ficha_campo.esplanar.azimut }} <br>
+                                            <strong>Clivaje:</strong> {{ ficha_campo.esplanar.clivaje }} <br>
+                                            <strong>Estratificacion:</strong> {{ ficha_campo.esplanar.estratificacion }}
+                                            <br>
+                                            <strong>Foto geologia:</strong> {{ ficha_campo.esplanar.fotogeologia }} <br>
+                                            <strong>Zona de Cizalla:</strong> {{ ficha_campo.esplanar.zonaDeCizalla }}
+                                            <br>
+                                            <strong>Rocas
+                                                Metaforicas:</strong> {{ ficha_campo.esplanar.rocasMetaforicas }} <br>
+                                            <strong>Rocas Igneas:</strong> {{ ficha_campo.esplanar.rocasIgneas }} <br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Afloramiento:</h5>
+                                        <p class="card-text">
+                                            <strong>Dimension:</strong> {{ ficha_campo.afloramiento.dimension }} <br>
+                                            <strong>Origen:</strong> {{ ficha_campo.afloramiento.origen }} <br>
+                                            <strong>Tipo Roca:</strong> {{ ficha_campo.afloramiento.tipoRoca }} <br>
+                                            <strong>Sitio:</strong> {{ ficha_campo.afloramiento.sitio }} <br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <table id="metadata_table" style="visibility:hidden">
+            <tr>
+                <th>Datum</th>
+                <th>Autor</th>
+                <th>Datos ubicacion</th>
+                <th>Ubicacion</th>
+                <th>Unidad geologica</th>
+                <th>Tipo contacto geologico</th>
+                <th>Limite contacto geologico</th>
+                <th>Certeza contacto geologico</th>
+                <th>Origen roca</th>
+                <th>Estructura roca</th>
+                <th>Altura</th>
+                <th>Rumbo</th>
+            </tr>
+            <tr>
+                <td>{{ ficha_campo.datum }}</td>
+                <td>{{ ficha_campo.descritaPor }}</td>
+                <td>{{ ficha_campo.datosUbicacion }}</td>
+                <td>{{ ficha_campo.ubicacion.provincia }}, {{ ficha_campo.ubicacion.canton }}</td>
+                <td>{{ ficha_campo.nomenclaturaUnidadGeologica }}</td>
+                <td>{{ ficha_campo.tipoContactoGeo }}</td>
+                <td>{{ ficha_campo.limiteContactoGeo }}</td>
+                <td>{{ ficha_campo.certezaContactoGeo }}</td>
+                <td>{{ ficha_campo.origenRoca }}</td>
+                <td>{{ ficha_campo.estructuraRoca }}</td>
+                <td>{{ ficha_campo.pliegue.altura }}</td>
+                <td>{{ ficha_campo.pliegue.rumbo }}</td>
+            </tr>
+        </table>
+    {% endif %}
+
+    <script type="application/javascript">
+
+
+        function exportTableToCSV($table, filename) {
+
+            var $rows = $table.find('tr:has(td),tr:has(th)'),
+
+                // Temporary delimiter characters unlikely to be typed by keyboard
+                // This is to avoid accidentally splitting the actual contents
+                tmpColDelim = String.fromCharCode(12), // vertical tab character
+                tmpRowDelim = String.fromCharCode(0), // null character
+
+                // actual delimiter characters for CSV format
+                colDelim = '","',
+                rowDelim = '"\r\n"',
+
+                // Grab text from table into CSV formatted string
+                csv = '"' + $rows.map(function (i, row) {
+                    var $row = $(row), $cols = $row.find('td,th');
+
+                    return $cols.map(function (j, col) {
+                        var $col = $(col), text = $col.text();
+
+                        return text.replace(/"/g, '""'); // escape double quotes
+
+                    }).get().join(tmpColDelim);
+
+                }).get().join(tmpRowDelim)
+                    .split(tmpRowDelim).join(rowDelim)
+                    .split(tmpColDelim).join(colDelim) + '"',
+
+
+                // Data URI
+                csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+
+            console.log(csv);
+
+            if (window.navigator.msSaveBlob) { // IE 10+
+                //alert('IE' + csv);
+                window.navigator.msSaveOrOpenBlob(new Blob([csv], {type: "text/plain;charset=utf-8;"}), "csvname.csv")
+            } else {
+                $(this).attr({'download': filename, 'href': csvData, 'target': '_blank'});
+            }
+        }
+
+        $("#export").click(function (event) {
+            // var outputFile = 'export'
+            var outputFile = '{{ ficha_campo.datum }}.csv';
+            outputFile = outputFile.replace(/\s/g, '');
+
+            // CSV
+            exportTableToCSV.apply(this, [$('#metadata_table'), outputFile]);
+
+            // IF CSV, don't do event.preventDefault() or return false
+            // We actually need this to be a typical hyperlink
+        });
+
+    </script>
+{% endblock %}

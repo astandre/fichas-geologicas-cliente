@@ -7,23 +7,48 @@
 {% block main %}
 
     {% if fichas_campo %}
-        <table>
+        <table class="table table-striped">
             <tr>
-                <th>Muestra</th>
-                <th>Origen Roca</th>
-                <th>Unidad Geologica</th>
-                <th>Contacto Geologica</th>
-                <th>Detalle</th>
+                <th  scope="col" >Muestra</th>
+                <th  scope="col" >Escala</th>
+                <th  scope="col" >Proyecto</th>
+                <th  scope="col" >Ubicacion</th>
+                <th  scope="col" >Autor</th>
+                <th  scope="col" >Detalle</th>
             </tr>
             {% for ficha in fichas_campo %}
                 <tr>
-                    <td>{{ ficha.muestra }}</td>
-                    <td>{{ ficha.origenRoca }}</td>
-                    <td>{{ ficha.unidadGeologica }}</td>
-                    <td>{{ ficha.contactoGeologico }}</td>
-                    <td><a href="">Detalle</a></td>
+                    <td scope="row" >{{ ficha.datum }}</td>
+                    <td>{{ ficha.escala }}</td>
+                    <td>{{ ficha.proyecto }}</td>
+                    <td>{{ ficha.datosUbicacion }}</td>
+                    <td>{{ ficha.descritaPor }}</td>
+                    <td><a href="{% url 'ficha_campo_detail' ficha.id %} ">Detalle</a></td>
                 </tr>
             {% endfor %}
         </table>
+        {% if fichas_campo.has_other_pages %}
+            <ul class="pagination">
+                {% if fichas_campo.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ fichas_campo.previous_page_number }}">Previous</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a></li>
+                {% endif %}
+                {% for i in fichas_campo.paginator.page_range %}
+                    {% if fichas_campo.number == i %}
+                        <li class="page-item active"><a class="page-link"> <span>{{ i }} <span
+                                class="sr-only">(current)</span></span></a></li>
+                    {% else %}
+                        <li  class="page-item" ><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if fichas_campo.has_next %}
+                    <li class="page-item"><a href="?page={{ fichas_campo.next_page_number }}" class="page-link" >Next</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link">Next</a></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+
     {% endif %}
 {% endblock %}
